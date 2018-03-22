@@ -49,5 +49,13 @@ function shuffle(array) {
     return array;
 }
 
+// Click Listener
+let clickedCardId = '';
+gameBoard.addEventListener('click', function (e) {
+    if (e.target.id !== clickedCardId) {
+        e.target.classList.add('open');
+    }
+    clickedCardId = e.target.id;
+})
 
- newGame(gameBoard);
+newGame(gameBoard);
