@@ -1,7 +1,7 @@
 /*
  * Dom Elements
  */
-const gameBoard = document.querySelector('.game-board')
+const gameBoard = document.querySelector('.gameBoard')
 
 /*
  * Create a list that holds all of your cards

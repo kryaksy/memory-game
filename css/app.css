@@ -85,25 +85,25 @@ h1 {
  * Styles for the Score Panel
  */
 
-.score-panel {
+.scorePanel {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.scorePanel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.scorePanel .stars li {
     list-style: none;
     display: inline-block;
 }
 
-.score-panel .restart {
+.scorePanel .restart {
     float: right;
     cursor: pointer;
 }
