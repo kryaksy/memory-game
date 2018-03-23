@@ -29,7 +29,7 @@ li{
     list-style: none;
 }
 
-.container {
+#game {
     display: flex;
     justify-content: center;
     align-items: center;
