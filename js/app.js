@@ -1,4 +1,3 @@
-// TODO: clicking restart button in scorePanel will restart the game
 // TODO: add variable (moveCount) which increments by each move
 // TODO: activate the stars according to moveCount
 // TODO: add chronometer
@@ -56,7 +55,7 @@ function shuffle(array) {
     return array;
 }
 
-// Click Listener
+// LISTENERS
 let comparingList = [];
 let matchedCards = 0;
 gameBoard.addEventListener('click', function (e) {
@@ -88,6 +87,14 @@ gameBoard.addEventListener('click', function (e) {
             }
         }
     }
+})
+
+document.querySelector('.restart').addEventListener('click', function () {
+    document.querySelector('.board').innerHTML = '';
+    //moveCount 0
+    //chronometer 0
+    //stars 0
+    newGame(gameBoard);
 })
 
 newGame(gameBoard);
