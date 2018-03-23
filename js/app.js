@@ -66,7 +66,9 @@ gameBoard.addEventListener('click', function (e) {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
                         if (matchedCards === 8) {
-                            document.querySelector('#modal').style.display = 'block';
+                            setTimeout(function () {
+                                document.querySelector('#modal').style.display = 'block';
+                            }, 300)
                         }
                     },400)
                 }else{
