@@ -51,6 +51,7 @@ function shuffle(array) {
 
 // Click Listener
 let comparingList = [];
+let matchedCards = 0;
 gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
@@ -60,9 +61,13 @@ gameBoard.addEventListener('click', function (e) {
                 const firstCard = document.getElementById(comparingList[0]);
                 const secondCard = document.getElementById(comparingList[1]);
                 if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
+                    matchedCards++;
                     setTimeout(function () {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
+                        if (matchedCards === 8) {
+                            document.querySelector('#modal').style.display = 'block';
+                        }
                     },400)
                 }else{
                     setTimeout(function () {
