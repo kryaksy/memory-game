@@ -60,8 +60,10 @@ gameBoard.addEventListener('click', function (e) {
                 const firstCard = document.getElementById(comparingList[0]);
                 const secondCard = document.getElementById(comparingList[1]);
                 if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
-                    firstCard.classList.add('match');
-                    secondCard.classList.add('match');
+                    setTimeout(function () {
+                        firstCard.classList.add('match');
+                        secondCard.classList.add('match');
+                    },400)
                 }else{
                     setTimeout(function () {
                         firstCard.classList.remove('open');
