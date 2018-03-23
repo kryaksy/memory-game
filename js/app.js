@@ -8,7 +8,7 @@
 /*
  * Dom Elements
  */
-const gameBoard = document.querySelector('.gameBoard');
+const gameBoard = document.querySelector('.board');
 
 
 /*

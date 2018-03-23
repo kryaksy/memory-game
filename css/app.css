@@ -114,36 +114,36 @@ h1 {
     color: orange;
 }
 
-.scorePanel {
+.panel {
     width: 500px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
 }
 
-.scorePanel .progress {
+.panel .progress {
     display: flex;
 }
 
-.scorePanel .stars {
+.panel .stars {
     margin: 0;
     padding: 0;
     margin: 0 5px 0 0;
 }
 
-.scorePanel .stars li {
+.panel .stars li {
     display: inline-block;
 }
 
-.scorePanel .restart {
+.panel .restart {
     cursor: pointer;
 }
 
-.scorePanel .moves {
+.panel .moves {
     display: flex;
 }
 
-.scorePanel .moves *{
+.panel .moves *{
     padding-right: 4px;
 }
 
