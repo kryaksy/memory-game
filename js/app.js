@@ -51,11 +51,29 @@ function shuffle(array) {
 
 // Click Listener
 let clickedCardId = '';
+let comparingList = [];
 gameBoard.addEventListener('click', function (e) {
-    if (e.target.id !== clickedCardId) {
+    if (e.target.id !== clickedCardId && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
+        comparingList.push(e.target.id);
+        if (comparingList[0]) {
+            if (comparingList[1]) {
+                const firstCard = document.getElementById(comparingList[0]);
+                const secondCard = document.getElementById(comparingList[1]);
+                if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
+                    firstCard.classList.add('match');
+                    secondCard.classList.add('match');
+                }else{
+                    setTimeout(function () {
+                        firstCard.classList.remove('open');
+                        secondCard.classList.remove('open');
+                    },400)
+                }
+                comparingList = [];
+            }
+        }
+        clickedCardId = e.target.id;
     }
-    clickedCardId = e.target.id;
 })
 
 newGame(gameBoard);
