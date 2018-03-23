@@ -50,10 +50,9 @@ function shuffle(array) {
 }
 
 // Click Listener
-let clickedCardId = '';
 let comparingList = [];
 gameBoard.addEventListener('click', function (e) {
-    if (e.target.id !== clickedCardId && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
+    if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
         comparingList.push(e.target.id);
         if (comparingList[0]) {
@@ -72,7 +71,6 @@ gameBoard.addEventListener('click', function (e) {
                 comparingList = [];
             }
         }
-        clickedCardId = e.target.id;
     }
 })
 
