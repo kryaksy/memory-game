@@ -1,3 +1,10 @@
+// TODO: clicking restart button in scorePanel will restart the game
+// TODO: add variable (moveCount) which increments by each move
+// TODO: activate the stars according to moveCount
+// TODO: add chronometer
+// TODO: clicking new game button restarts the game
+// TODO: clicking cross button closes the modal without restart
+
 /*
  * Dom Elements
  */
