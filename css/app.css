@@ -109,6 +109,10 @@ h1 {
  * Styles for the Score Panel
  */
 
+.activeStar{
+    color: orange;
+}
+
 .scorePanel {
     width: 500px;
     margin-bottom: 10px;
