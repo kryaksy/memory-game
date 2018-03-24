@@ -70,7 +70,7 @@ gameBoard.addEventListener('click', function (e) {
                     setTimeout(function () {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
-                        if (matchedCards === 1) {
+                        if (matchedCards === 8) {
                             setTimeout(function () {
                                 document.querySelector('#modal').style.display = 'block';
                                 document.querySelector('#modal').querySelector('.restart').addEventListener('click', function () {
