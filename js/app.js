@@ -1,6 +1,5 @@
 // TODO: activate the stars according to moveCount
 // TODO: add chronometer
-// TODO: clicking new game button restarts the game
 
 /*
  * Dom Elements
@@ -71,9 +70,14 @@ gameBoard.addEventListener('click', function (e) {
                     setTimeout(function () {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
-                        if (matchedCards === 8) {
+                        if (matchedCards === 1) {
                             setTimeout(function () {
                                 document.querySelector('#modal').style.display = 'block';
+                                document.querySelector('#modal').querySelector('.restart').addEventListener('click', function () {
+                                    document.querySelector('#modal').style.display = 'none';
+                                    document.querySelector('.board').innerHTML = '';
+                                    newGame(gameBoard);
+                                })
                             }, 300)
                         }
                     },400)
