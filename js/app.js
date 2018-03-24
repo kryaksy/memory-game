@@ -1,4 +1,3 @@
-// TODO: add variable (moveCount) which increments by each move
 // TODO: activate the stars according to moveCount
 // TODO: add chronometer
 // TODO: clicking new game button restarts the game
@@ -24,6 +23,7 @@ function newGame(a) {
     shuffle(faItems);
     var newDeck = document.createElement('container');
     newDeck.classList.add('deck');
+    document.querySelector('#moveCount').innerHTML = moveCount;
 
 	for (var i = 0; i < faItems.length; i++) {
 		var newCard = document.createElement('div');
@@ -57,6 +57,7 @@ function shuffle(array) {
 // LISTENERS
 let comparingList = [];
 let matchedCards = 0;
+let moveCount = 0;
 gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
@@ -81,6 +82,8 @@ gameBoard.addEventListener('click', function (e) {
                         firstCard.classList.remove('open');
                         secondCard.classList.remove('open');
                     },400)
+                    moveCount++;
+                    document.querySelector('#moveCount').innerHTML = moveCount;
                 }
                 comparingList = [];
             }
