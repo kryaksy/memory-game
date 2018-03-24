@@ -2,7 +2,6 @@
 // TODO: activate the stars according to moveCount
 // TODO: add chronometer
 // TODO: clicking new game button restarts the game
-// TODO: clicking cross button closes the modal without restart
 
 /*
  * Dom Elements
@@ -95,6 +94,10 @@ document.querySelector('.restart').addEventListener('click', function () {
     //chronometer 0
     //stars 0
     newGame(gameBoard);
+})
+
+document.querySelector('.close').addEventListener('click', function () {
+    document.querySelector('#modal').style.display = 'none';
 })
 
 newGame(gameBoard);
