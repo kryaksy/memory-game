@@ -19,6 +19,12 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
 
 // Creating Deck HTML
 function newGame(a) {
+    document.querySelector('.board').innerHTML = '';
+    moveCount = 0;
+    matchedCards = 0;
+    //chronometer 0
+    //stars 0
+
     shuffle(faItems);
     var newDeck = document.createElement('container');
     newDeck.classList.add('deck');
@@ -75,7 +81,6 @@ gameBoard.addEventListener('click', function (e) {
                                 document.querySelector('#modal').style.display = 'block';
                                 document.querySelector('#modal').querySelector('.restart').addEventListener('click', function () {
                                     document.querySelector('#modal').style.display = 'none';
-                                    document.querySelector('.board').innerHTML = '';
                                     newGame(gameBoard);
                                 })
                             }, 300)
@@ -95,13 +100,7 @@ gameBoard.addEventListener('click', function (e) {
     }
 })
 
-document.querySelector('.restart').addEventListener('click', function () {
-    document.querySelector('.board').innerHTML = '';
-    //moveCount 0
-    //chronometer 0
-    //stars 0
-    newGame(gameBoard);
-})
+document.querySelector('.restart').addEventListener('click', newGame(gameBoard))
 
 document.querySelector('.close').addEventListener('click', function () {
     document.querySelector('#modal').style.display = 'none';
