@@ -5,6 +5,8 @@
  * Dom Elements
  */
 const gameBoard = document.querySelector('.board');
+const modal = document.querySelector('#modal');
+const game = document.querySelector('#game');
 
 
 /*
@@ -67,19 +69,35 @@ gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
         comparingList.push(e.target.id);
+
         if (comparingList[0]) {
             if (comparingList[1]) {
                 const firstCard = document.getElementById(comparingList[0]);
                 const secondCard = document.getElementById(comparingList[1]);
+
                 if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
                     matchedCards++;
                     setTimeout(function () {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
+
                         if (matchedCards === 8) {
+                            if (moveCount > 8) {
+                                modal.querySelector('.stars').children[2].classList.remove('active');
+                                if (moveCount > 13) {
+                                    modal.querySelector('.stars').children[1].classList.remove('active');
+                                    if (moveCount > 21) {
+                                        modal.querySelector('.stars').children[0].classList.remove('active');
+                                    }
+                                }
+                            }
+
                             setTimeout(function () {
-                                document.querySelector('#modal').style.display = 'block';
-                                document.querySelector('#modal').querySelector('.restart').addEventListener('click', function () {
+                                modal.style.display = 'block';
+                                if (moveCount > 8) {
+                                    modal.querySelector('.stars').children[0].classList.add = 'active';
+                                }
+                                modal.querySelector('.restart').addEventListener('click', function () {
                                     document.querySelector('#modal').style.display = 'none';
                                     newGame(gameBoard);
                                 })
@@ -87,11 +105,21 @@ gameBoard.addEventListener('click', function (e) {
                         }
                     },400)
                 }else{
+                    moveCount++;
                     setTimeout(function () {
                         firstCard.classList.remove('open');
                         secondCard.classList.remove('open');
                     },400)
-                    moveCount++;
+
+                    if (moveCount > 8) {
+                        game.querySelector('.stars').children[2].classList.remove('active');
+                        if (moveCount > 13) {
+                            game.querySelector('.stars').children[1].classList.remove('active');
+                            if (moveCount > 21) {
+                                game.querySelector('.stars').children[0].classList.remove('active');
+                            }
+                        }
+                    }
                     document.querySelector('#moveCount').innerHTML = moveCount;
                 }
                 comparingList = [];
