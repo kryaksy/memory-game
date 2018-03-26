@@ -1,6 +1,3 @@
-// TODO: activate the stars according to moveCount
-// TODO: add chronometer
-
 /*
  * Dom Elements
  */
@@ -26,6 +23,9 @@ function newGame(a) {
     matchedCards = 0;
     //chronometer 0
     //stars 0
+
+    var start = Math.floor(performance.now()/1000);
+    var myVar = setInterval(myTimer, 1000);
 
     shuffle(faItems);
     var newDeck = document.createElement('container');
@@ -59,6 +59,11 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function myTimer() {
+	var end = Math.floor(performance.now()/1000);
+    document.getElementById("timer").innerHTML = 'Time: ' + (end - start) + ' sec.';
 }
 
 // LISTENERS
