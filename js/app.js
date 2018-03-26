@@ -1,3 +1,6 @@
+// TODO: update totalTime on modal
+// FIXME: timer doesn't work after latest change
+
 /*
  * Dom Elements
  */
