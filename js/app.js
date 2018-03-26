@@ -1,5 +1,6 @@
 // TODO: update totalTime on modal
 // FIXME: timer doesn't work after latest change
+var start = Math.floor(performance.now()/1000);
 
 /*
  * Dom Elements
@@ -21,13 +22,14 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
 
 // Creating Deck HTML
 function newGame(a) {
+    start = Math.floor(performance.now()/1000);
+
     document.querySelector('.board').innerHTML = '';
     moveCount = 0;
     matchedCards = 0;
     //chronometer 0
     //stars 0
 
-    var start = Math.floor(performance.now()/1000);
     var myVar = setInterval(myTimer, 1000);
 
     shuffle(faItems);
@@ -45,7 +47,7 @@ function newGame(a) {
         newDeck.append(newCard);
 	}
 
-    a.append(newDeck);
+    gameBoard.append(newDeck);
 }
 
 
@@ -66,7 +68,8 @@ function shuffle(array) {
 
 function myTimer() {
 	var end = Math.floor(performance.now()/1000);
-    document.getElementById("timer").innerHTML = 'Time: ' + (end - start) + ' sec.';
+    timeInterval = Math.floor(end - start);
+    document.getElementById("timer").innerHTML = 'Time: ' + timeInterval + ' sec.';
 }
 
 // LISTENERS
@@ -136,10 +139,10 @@ gameBoard.addEventListener('click', function (e) {
     }
 })
 
-document.querySelector('.restart').addEventListener('click', newGame(gameBoard))
+document.querySelector('.restart').addEventListener('click', newGame)
 
 document.querySelector('.close').addEventListener('click', function () {
     document.querySelector('#modal').style.display = 'none';
 })
 
-newGame(gameBoard);
+newGame();
