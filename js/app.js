@@ -1,6 +1,7 @@
 // TODO: update totalTime on modal
 // FIXME: timer doesn't work after latest change
 var start = Math.floor(performance.now()/1000);
+var myVar = setInterval(myTimer, 1000);
 
 /*
  * Dom Elements
@@ -30,8 +31,6 @@ function newGame(a) {
     moveCount = 0;
     //chronometer 0
     //stars 0
-
-    var myVar = setInterval(myTimer, 1000);
 
     shuffle(faItems);
     var newDeck = document.createElement('container');
@@ -70,7 +69,7 @@ function shuffle(array) {
 function myTimer() {
 	var end = Math.floor(performance.now()/1000);
     timeInterval = Math.floor(end - start);
-    document.getElementById("timer").innerHTML = 'Time: ' + timeInterval + ' sec.';
+    document.getElementById("timer").innerHTML = timeInterval + 's';
 }
 
 // LISTENERS
@@ -94,6 +93,8 @@ gameBoard.addEventListener('click', function (e) {
                         secondCard.classList.add('match');
 
                         if (matchedCards === 8) {
+                            clearInterval(myVar);
+                            modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
                             if (moveCount > 8) {
                                 modal.querySelector('.stars').children[2].classList.remove('active');
                                 if (moveCount > 13) {
