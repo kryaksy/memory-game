@@ -98,6 +98,9 @@ function defaultStars() {
     game.querySelector('.stars').children[0].classList.add('active');
     game.querySelector('.stars').children[1].classList.add('active');
     game.querySelector('.stars').children[2].classList.add('active');
+    modal.querySelector('.stars').children[0].classList.add('active');
+    modal.querySelector('.stars').children[1].classList.add('active');
+    modal.querySelector('.stars').children[2].classList.add('active');
 }
 
 // LISTENERS
