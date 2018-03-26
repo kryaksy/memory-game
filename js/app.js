@@ -1,4 +1,7 @@
 var start = 0;
+var matchedCards, moveCount;
+let comparingList = [];
+
 
 /*
  * Dom Elements
@@ -20,61 +23,17 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
  */
 
 // Creating Deck HTML
-function newGame(a) {
+function newGame() {
     modal.style.display = 'none';
-
     start = Math.floor(performance.now()/1000);
     var timer = setInterval(myTimer, 1000);
-
-    var comparingList = [];
-    var matchedCards = 0;
-    var moveCount = 0;
+    moveCount = 0;
+    matchedCards = 0;
     gameBoard.innerHTML = '';
     defaultStars();
 
     shuffle(faItems);
     newDeck(moveCount);
-
-    gameBoard.addEventListener('click', function (e) {
-        if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
-            e.target.classList.add('open');
-            comparingList.push(e.target.id);
-
-            if (comparingList[0]) {
-                if (comparingList[1]) {
-                    const firstCard = document.getElementById(comparingList[0]);
-                    const secondCard = document.getElementById(comparingList[1]);
-
-                    if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
-                        matchedCards++;
-                        setTimeout(function () {
-                            firstCard.classList.add('match');
-                            secondCard.classList.add('match');
-                            if (matchedCards === 8) {
-                                clearInterval(timer);
-                                modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
-                                actStars(moveCount,8,13,21);
-                                moveCount = 0;
-                                setTimeout(function () {
-                                    modal.style.display = 'block';
-                                    modal.querySelector('.restart').addEventListener('click', newGame)
-                                }, 300)
-                            }
-                        },400)
-                    }else{
-                        setTimeout(function () {
-                            firstCard.classList.remove('open');
-                            secondCard.classList.remove('open');
-                        },400)
-                        moveCount++;
-                        actStars(moveCount,8,13,21);
-                        moveCountElement.innerHTML = moveCount;
-                    }
-                    comparingList = [];
-                }
-            }
-        }
-    })
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -96,6 +55,7 @@ function shuffle(array) {
 function newDeck(a) {
     var newDeck = document.createElement('container');
     newDeck.classList.add('deck');
+    a = 0;
     moveCountElement.innerHTML = a;
 
 	for (var i = 0; i < faItems.length; i++) {
@@ -142,10 +102,54 @@ function defaultStars() {
 
 // LISTENERS
 
-document.querySelector('.restart').addEventListener('click', newGame)
+game.querySelector('.restart').addEventListener('click', function () {
+    newGame();
+})
 
 document.querySelector('.close').addEventListener('click', function () {
     document.querySelector('#modal').style.display = 'none';
+})
+
+modal.querySelector('.restart').addEventListener('click', newGame);
+
+gameBoard.addEventListener('click', function (e) {
+    if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
+        e.target.classList.add('open');
+        comparingList.push(e.target.id);
+
+        if (comparingList[0]) {
+            if (comparingList[1]) {
+                let firstCard = document.getElementById(comparingList[0]);
+                let secondCard = document.getElementById(comparingList[1]);
+
+                if (firstCard.querySelector('.back').classList[2] == secondCard.querySelector('.back').classList[2]) {
+                    matchedCards++;
+                    setTimeout(function () {
+                        firstCard.classList.add('match');
+                        secondCard.classList.add('match');
+                        if (matchedCards === 8) {
+                            clearInterval(timer);
+                            modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
+                            actStars(moveCount,8,13,21);
+                            setTimeout(function () {
+                                modal.style.display = 'block';
+                            }, 300)
+                            moveCount = 0;
+                        }
+                    },400)
+                }else{
+                    setTimeout(function () {
+                        firstCard.classList.remove('open');
+                        secondCard.classList.remove('open');
+                    },400)
+                    moveCount++;
+                    actStars(moveCount,8,13,21);
+                    moveCountElement.innerHTML = moveCount;
+                }
+                comparingList = [];
+            }
+        }
+    }
 })
 
 newGame();
