@@ -1,7 +1,6 @@
 var start = 0;
-var matchedCards, moveCount;
+var matchedCards, moveCount, timer;
 let comparingList = [];
-
 
 /*
  * Dom Elements
@@ -26,7 +25,7 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
 function newGame() {
     modal.style.display = 'none';
     start = Math.floor(performance.now()/1000);
-    var timer = setInterval(myTimer, 1000);
+    timer = setInterval(myTimer, 1000);
     moveCount = 0;
     matchedCards = 0;
     gameBoard.innerHTML = '';
@@ -75,6 +74,7 @@ function myTimer() {
 	var end = Math.floor(performance.now()/1000);
     timeInterval = Math.floor(end - start);
     document.getElementById("timer").innerHTML = timeInterval + 's';
+    modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
 }
 
 // Stars active
@@ -129,7 +129,6 @@ gameBoard.addEventListener('click', function (e) {
                         secondCard.classList.add('match');
                         if (matchedCards === 8) {
                             clearInterval(timer);
-                            modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
                             actStars(moveCount,8,13,21);
                             setTimeout(function () {
                                 modal.style.display = 'block';
