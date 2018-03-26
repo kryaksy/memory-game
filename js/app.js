@@ -25,8 +25,9 @@ function newGame(a) {
     start = Math.floor(performance.now()/1000);
 
     document.querySelector('.board').innerHTML = '';
-    moveCount = 0;
+    comparingList = [];
     matchedCards = 0;
+    moveCount = 0;
     //chronometer 0
     //stars 0
 
