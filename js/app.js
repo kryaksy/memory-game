@@ -104,7 +104,7 @@ document.querySelector('.close').addEventListener('click', function () {
 modal.querySelector('.restart').addEventListener('click', newGame);
 
 var start = 0;
-var matchedCards, moveCount, timer;
+var matchedCards, moveCount;
 let comparingList = [];
 gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
