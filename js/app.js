@@ -3,6 +3,7 @@ const gameBoard = document.querySelector('.board');
 const modal = document.querySelector('#modal');
 const game = document.querySelector('#game');
 const moveCountElement = document.querySelector('#moveCount');
+const timerElement = document.getElementById("timer");
 
 //Create a list that holds all of your cards
 let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
@@ -57,15 +58,15 @@ function newDeck() {
     gameBoard.append(newDeck);
 }
 
-// ClockWatch Function
+// Timer Function
 var timeKeep = 0;
 function myTimer() {
     timeKeep++;
-    document.getElementById("timer").innerHTML = timeKeep + 's';
+    timerElement.innerHTML = timeKeep + 's';
     modal.querySelector('#totalTime').innerHTML = timeKeep + 's';
 }
 
-// Stars active
+// Stars action
 function actStars(a,b,c) {
     if (a > b) {
         game.querySelector('.stars').children[2].classList.remove('active');
@@ -93,15 +94,18 @@ function defaultStars() {
  * LISTENERS
  */
 
+// Restart the Game on game panel
 game.querySelector('.restart').addEventListener('click', newGame)
 
+// Restart the Game on modal
+modal.querySelector('.restart').addEventListener('click', newGame);
+
+// Close the Modal
 document.querySelector('.close').addEventListener('click', function () {
     document.querySelector('#modal').style.display = 'none';
 })
 
-modal.querySelector('.restart').addEventListener('click', newGame);
-
-var start = 0;
+// Play the game
 var matchedCards, moveCount;
 let comparingList = [];
 gameBoard.addEventListener('click', function (e) {
@@ -144,10 +148,10 @@ gameBoard.addEventListener('click', function (e) {
     }
 })
 
+// Start the timer at first click
 var timerStarted = false;
-gameBoard.addEventListener('click', function (e) {
+gameBoard.addEventListener('click', function () {
     if (!timerStarted) {
-        start = performance.now();
         timer = setInterval(myTimer, 1000);
         timerStarted = true;
     }
