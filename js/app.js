@@ -1,19 +1,9 @@
-var start = 0;
-var matchedCards, moveCount, timer;
-let comparingList = [];
-
-/*
- * Dom Elements
- */
 const gameBoard = document.querySelector('.board');
 const modal = document.querySelector('#modal');
 const game = document.querySelector('#game');
 const moveCountElement = document.querySelector('#moveCount');
 
-
-/*
- * Create a list that holds all of your cards
- */
+//Create a list that holds all of your cards
 let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
 
@@ -32,7 +22,7 @@ function newGame() {
     defaultStars();
 
     shuffle(faItems);
-    newDeck(moveCount);
+    newDeck();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -51,11 +41,11 @@ function shuffle(array) {
 }
 
 // Create new Deck
-function newDeck(a) {
+function newDeck() {
     var newDeck = document.createElement('container');
     newDeck.classList.add('deck');
-    a = 0;
-    moveCountElement.innerHTML = a;
+    moveCount = 0;
+    moveCountElement.innerHTML = moveCount;
 
 	for (var i = 0; i < faItems.length; i++) {
 		var newCard = document.createElement('div');
@@ -103,7 +93,10 @@ function defaultStars() {
     modal.querySelector('.stars').children[2].classList.add('active');
 }
 
-// LISTENERS
+
+/*
+ * LISTENERS
+ */
 
 game.querySelector('.restart').addEventListener('click', function () {
     newGame();
@@ -115,11 +108,13 @@ document.querySelector('.close').addEventListener('click', function () {
 
 modal.querySelector('.restart').addEventListener('click', newGame);
 
+var start = 0;
+var matchedCards, moveCount, timer;
+let comparingList = [];
 gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
         comparingList.push(e.target.id);
-
         if (comparingList[0]) {
             if (comparingList[1]) {
                 let firstCard = document.getElementById(comparingList[0]);
