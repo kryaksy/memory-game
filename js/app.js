@@ -1,3 +1,4 @@
+// FIXME: Restarting continuing game causes bug
 const gameBoard = document.querySelector('.board');
 const modal = document.querySelector('#modal');
 const game = document.querySelector('#game');
@@ -98,9 +99,7 @@ function defaultStars() {
  * LISTENERS
  */
 
-game.querySelector('.restart').addEventListener('click', function () {
-    newGame();
-})
+game.querySelector('.restart').addEventListener('click', newGame)
 
 document.querySelector('.close').addEventListener('click', function () {
     document.querySelector('#modal').style.display = 'none';
