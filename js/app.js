@@ -15,15 +15,13 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
 // Creating Deck HTML
 function newGame() {
     modal.style.display = 'none';
-    start = Math.floor(performance.now()/1000);
-    timer = setInterval(myTimer, 1000);
     moveCount = 0;
     matchedCards = 0;
     gameBoard.innerHTML = '';
     defaultStars();
-
     shuffle(faItems);
     newDeck();
+    timerStarted = false;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -37,7 +35,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -62,8 +59,8 @@ function newDeck() {
 
 // ClockWatch Function
 function myTimer() {
-	var end = Math.floor(performance.now()/1000);
-    timeInterval = Math.floor(end - start);
+	var end = performance.now();
+    timeInterval = Math.floor((end - start)/1000);
     document.getElementById("timer").innerHTML = timeInterval + 's';
     modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
 }
@@ -73,6 +70,7 @@ function actStars(a,b,c) {
     if (a > b) {
         game.querySelector('.stars').children[2].classList.remove('active');
         modal.querySelector('.stars').children[2].classList.remove('active');
+
         if (a > c) {
             game.querySelector('.stars').children[1].classList.remove('active');
             modal.querySelector('.stars').children[1].classList.remove('active');
@@ -110,6 +108,7 @@ gameBoard.addEventListener('click', function (e) {
     if (e.target.id !== comparingList[0] && !(e.target.classList.contains('back')) && !(e.target.classList.contains('deck'))) {
         e.target.classList.add('open');
         comparingList.push(e.target.id);
+
         if (comparingList[0]) {
             if (comparingList[1]) {
                 let firstCard = document.getElementById(comparingList[0]);
@@ -120,6 +119,7 @@ gameBoard.addEventListener('click', function (e) {
                     setTimeout(function () {
                         firstCard.classList.add('match');
                         secondCard.classList.add('match');
+
                         if (matchedCards === 8) {
                             clearInterval(timer);
                             actStars(moveCount,8,15);
@@ -141,6 +141,15 @@ gameBoard.addEventListener('click', function (e) {
                 comparingList = [];
             }
         }
+    }
+})
+
+var timerStarted = false;
+gameBoard.addEventListener('click', function (e) {
+    if (!timerStarted) {
+        start = performance.now();
+        timer = setInterval(myTimer, 1000);
+        timerStarted = true;
     }
 })
 
