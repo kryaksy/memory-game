@@ -69,17 +69,13 @@ function myTimer() {
 }
 
 // Stars active
-function actStars(a,b,c,d) {
+function actStars(a,b,c) {
     if (a > b) {
         game.querySelector('.stars').children[2].classList.remove('active');
         modal.querySelector('.stars').children[2].classList.remove('active');
         if (a > c) {
             game.querySelector('.stars').children[1].classList.remove('active');
             modal.querySelector('.stars').children[1].classList.remove('active');
-            if (a > d) {
-                game.querySelector('.stars').children[0].classList.remove('active');
-                modal.querySelector('.stars').children[0].classList.remove('active');
-            }
         }
     }
 }
@@ -126,7 +122,7 @@ gameBoard.addEventListener('click', function (e) {
                         secondCard.classList.add('match');
                         if (matchedCards === 8) {
                             clearInterval(timer);
-                            actStars(moveCount,8,13,21);
+                            actStars(moveCount,8,15);
                             setTimeout(function () {
                                 modal.style.display = 'block';
                             }, 300)
@@ -139,7 +135,7 @@ gameBoard.addEventListener('click', function (e) {
                         secondCard.classList.remove('open');
                     },400)
                     moveCount++;
-                    actStars(moveCount,8,13,21);
+                    actStars(moveCount,8,15);
                     moveCountElement.innerHTML = moveCount;
                 }
                 comparingList = [];
