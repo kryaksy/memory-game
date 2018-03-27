@@ -23,6 +23,9 @@ function newGame() {
     shuffle(faItems);
     newDeck();
     timerStarted = false;
+    timeKeep = 0;
+    clearInterval(timer);
+    timerElement.innerHTML = '00:00';
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
