@@ -58,11 +58,11 @@ function newDeck() {
 }
 
 // ClockWatch Function
+var timeKeep = 0;
 function myTimer() {
-	var end = performance.now();
-    timeInterval = Math.floor((end - start)/1000);
-    document.getElementById("timer").innerHTML = timeInterval + 's';
-    modal.querySelector('#totalTime').innerHTML = timeInterval + 's';
+    timeKeep++;
+    document.getElementById("timer").innerHTML = timeKeep + 's';
+    modal.querySelector('#totalTime').innerHTML = timeKeep + 's';
 }
 
 // Stars active
