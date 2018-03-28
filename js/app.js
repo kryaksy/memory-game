@@ -62,11 +62,27 @@ function newDeck() {
 }
 
 // Timer Function
-var timeKeep = 0;
+let sec = 0;
+let min = 0
 function myTimer() {
-    timeKeep++;
-    timerElement.innerHTML = timeKeep + 's';
-    modal.querySelector('#totalTime').innerHTML = timeKeep + 's';
+    sec++;
+    // New Feature //
+    if (!(sec%60)) {
+        sec = 0;
+        min++;
+    }
+    if (min.toString().length == 1) {
+        min = '0' + min;
+    }
+    if (sec.toString().length == 1) {
+        sec = '0' + sec;
+    }
+    timerElement.innerHTML = min + ':' + sec;
+    modal.querySelector('#totalTime').innerHTML = min + ':' + sec;
+    // New Feature //
+
+    // timerElement.innerHTML = timeKeep + 's';
+    // modal.querySelector('#totalTime').innerHTML = timeKeep + 's';
 }
 
 // Stars action
