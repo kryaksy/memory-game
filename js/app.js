@@ -16,7 +16,8 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
 
 // Creating Deck HTML
 newGame = () => {
-    matchedCards, moveCount, min, sec = 0;
+    matchedCards = 0;
+    moveCount, min, sec = 0;
     modal.style.display = 'none';
     gameBoard.innerHTML = '';
     defaultStars();
