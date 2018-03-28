@@ -61,6 +61,7 @@ newDeck = () => {
 }
 
 // Timer Function
+// TODO: Try timer.js library @https://github.com/husa/timer.js/
 let sec = 0;
 let min = 0;
 myTimer = () => {
