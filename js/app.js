@@ -66,7 +66,6 @@ let sec = 0;
 let min = 0
 function myTimer() {
     sec++;
-    // New Feature //
     if (!(sec%60)) {
         sec = 0;
         min++;
@@ -79,10 +78,6 @@ function myTimer() {
     }
     timerElement.innerHTML = min + ':' + sec;
     modal.querySelector('#totalTime').innerHTML = min + ':' + sec;
-    // New Feature //
-
-    // timerElement.innerHTML = timeKeep + 's';
-    // modal.querySelector('#totalTime').innerHTML = timeKeep + 's';
 }
 
 // Stars action
