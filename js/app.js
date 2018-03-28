@@ -14,7 +14,7 @@ let faItems = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cub
  */
 
 // Creating Deck HTML
-function newGame() {
+newGame = () => {
     modal.style.display = 'none';
     moveCount = 0;
     matchedCards = 0;
@@ -22,14 +22,15 @@ function newGame() {
     defaultStars();
     shuffle(faItems);
     newDeck();
+    sec = 0;
+    min = 0;
     timerStarted = false;
-    timeKeep = 0;
     clearInterval(timer);
     timerElement.innerHTML = '00:00';
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+shuffle = (array) => {
     var curr = array.length, temp, rand;
 
     while (curr) {
@@ -43,7 +44,7 @@ function shuffle(array) {
 }
 
 // Create new Deck
-function newDeck() {
+newDeck = () => {
     var newDeck = document.createElement('container');
     newDeck.classList.add('deck');
     moveCount = 0;
@@ -63,8 +64,8 @@ function newDeck() {
 
 // Timer Function
 let sec = 0;
-let min = 0
-function myTimer() {
+let min = 0;
+myTimer = () => {
     sec++;
     if (!(sec%60)) {
         sec = 0;
@@ -81,7 +82,7 @@ function myTimer() {
 }
 
 // Stars action
-function actStars(a,b,c) {
+actStars = (a,b,c) => {
     if (a > b) {
         game.querySelector('.stars').children[2].classList.remove('active');
         modal.querySelector('.stars').children[2].classList.remove('active');
@@ -94,7 +95,7 @@ function actStars(a,b,c) {
 }
 
 // Stars default
-function defaultStars() {
+defaultStars = () => {
     game.querySelector('.stars').children[0].classList.add('active');
     game.querySelector('.stars').children[1].classList.add('active');
     game.querySelector('.stars').children[2].classList.add('active');
@@ -115,9 +116,7 @@ game.querySelector('.restart').addEventListener('click', newGame)
 modal.querySelector('.restart').addEventListener('click', newGame);
 
 // Close the Modal
-document.querySelector('.close').addEventListener('click', function () {
-    document.querySelector('#modal').style.display = 'none';
-})
+document.querySelector('.close').addEventListener('click', closeModal = () => modal.style.display = 'none')
 
 // Play the game
 var matchedCards, moveCount;
