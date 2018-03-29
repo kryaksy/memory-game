@@ -153,7 +153,7 @@ gameBoard.addEventListener('click', (e) => {
                     setTimeout( () => {
                         firstCard.classList.remove('open');
                         secondCard.classList.remove('open');
-                    },400)
+                    },800)
                     moveCount++;
                     actStars(moveCount,8,15);
                     moveCountElement.innerHTML = moveCount;
